@@ -1,23 +1,26 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
-
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
-setupCounter(document.querySelector('#counter'))
+import Interpretador from './interpretador.js'
+const metodosDisponiveis = {
+  'TESTE': () => { console.log('Teste') },
+  'PARAMETROS': (parametroString, parametroNumber) => {
+    if (!parametroString) {
+      throw new Error('O parâmetro `parametroString` é obrigatório.');
+    }
+    if (typeof parametroString !== 'string') {
+      throw new Error('O tipo do parâmetro parametroString deve ser "string".');
+    }
+    if (parametroNumber) {
+      if (typeof parametroNumber !== 'number') {
+        throw new Error('O tipo do parâmetro `parametroNumber` deve ser "number".');
+      }
+    }
+    console.log(`Parâmetro: ${parametroString}, ${parametroNumber}`);
+  },
+};
+const interpretador = new Interpretador(metodosDisponiveis);
+const terminal = document.querySelector('#terminal');
+terminal.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    interpretador.executar(event.target.value);
+    event.target.value = '';
+  }
+});
