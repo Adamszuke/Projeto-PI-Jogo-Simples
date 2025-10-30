@@ -15,7 +15,11 @@ const metodosDisponiveis = {
     }
     console.log(`Parâmetro: ${parametroString}, ${parametroNumber}`);
   },
+  "MEUMETODO": minhafuncao
 };
+function minhafuncao() {
+  console.log("TESTEEE")
+}
 const interpretador = new Interpretador(metodosDisponiveis);
 const terminal = document.querySelector('#terminal');
 terminal.addEventListener('keydown', (event) => {
