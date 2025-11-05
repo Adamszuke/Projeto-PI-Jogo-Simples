@@ -22,6 +22,9 @@ const metodosDisponiveis = {
   "moverDireita": moverDireita, 
   "moverEsquerda": moverEsquerda,
 };
+function minhafuncao() {
+  console.log("TESTEEE")
+}
 const interpretador = new Interpretador(metodosDisponiveis);
 const terminal = document.querySelector('#terminal');
 terminal.addEventListener('keydown', (event) => {

@@ -1,0 +1,57 @@
+* {
+    background-color: #444444;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+#tittle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
+
+.buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.CodeBall{
+    height: 90px;
+}
+button{
+    background-color: #31363b;
+    display: block;
+    width: 160px;
+    height: 70px;
+    border: 0px;
+    border-radius: 10px;
+    
+}
+button:hover{
+    background-color: #272a2e;
+    transition: 0.2s;
+    cursor: pointer;
+    
+}
+h1{
+    color: whitesmoke;
+    justify-content: center;
+    display: flex;
+    background-color: transparent;
+}
+
+a{
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+
+p{
+    color: white;
+    justify-content: center;
+    display: flex;
+}
