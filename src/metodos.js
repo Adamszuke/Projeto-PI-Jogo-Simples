@@ -1,45 +1,87 @@
-function moverCima(qnt) {
-    if (typeof qnt === 'undefined') {
-        throw new Error('O parâmetro `qtn` é obrigatório.');
-    } 
-    if (typeof qnt !== 'number') {
-        throw new Error('O tipo do parâmetro `qnt` deve ser "number".');
-    }
-    console.log(`Moveu ${qnt} blocos para cima!!`)
+import encontrarPlayer from "./utils/encontrar-player";
+
+function moverCima(qnt, mapa) {
+  if (typeof qnt === 'undefined') throw new Error('O parâmetro `qnt` é obrigatório.');
+  if (typeof qnt !== 'number') throw new Error('O tipo do parâmetro `qnt` deve ser "number".');
+
+  const pos = encontrarPlayer(mapa);
+  const novoY = pos.y - qnt;
+  const novoX = pos.x;
+
+  if (novoY < 0 || mapa.mapa[novoY][novoX] === "#") {
+    console.warn("🚫 Movimento bloqueado por parede ou limite do mapa.");
+    return;
+  }
+
+  mapa.mapa[pos.y][pos.x] = "";
+  mapa.mapa[novoY][novoX] = "P";
+  mapa.gameScreen.innerHTML = "";
+  mapa.renderizar();
+
+  console.log(`Moveu ${qnt} bloco(s) para cima!`);
 }
 
-function moverBaixo(qnt) {   
-    if (typeof qnt === 'undefined') {
-        throw new Error('O parâmetro `qtn` é obrigatório.');
-    } 
-    if (typeof qnt !== 'number') {
-        throw new Error('O tipo do parâmetro `qnt` deve ser "number".');
-      }
-      console.log(`Moveu ${qnt} blocos para baixo!!`)
-    
+function moverBaixo(qnt, mapa) {
+  if (typeof qnt === 'undefined') throw new Error('O parâmetro `qnt` é obrigatório.');
+  if (typeof qnt !== 'number') throw new Error('O tipo do parâmetro `qnt` deve ser "number".');
+
+  const pos = encontrarPlayer(mapa);
+  const novoY = pos.y + qnt;
+  const novoX = pos.x;
+
+  if (novoY >= mapa.mapa.length || mapa.mapa[novoY][novoX] === "#") {
+    console.warn("🚫 Movimento bloqueado por parede ou limite do mapa.");
+    return;
+  }
+
+  mapa.mapa[pos.y][pos.x] = "";
+  mapa.mapa[novoY][novoX] = "P";
+  mapa.gameScreen.innerHTML = "";
+  mapa.renderizar();
+
+  console.log(`Moveu ${qnt} bloco(s) para baixo!`);
 }
 
-function moverDireita(qnt) {
-    if (typeof qnt === 'undefined') {
-        console.log("entrei")
-        throw new Error('O parâmetro `qtn` é obrigatório.');
-    } 
-    if (typeof qnt !== 'number') {
-        throw new Error('O tipo do parâmetro `qnt` deve ser "number".');
-      }
-      console.log(`Moveu ${qnt} blocos para direita!!`)
+function moverDireita(qnt, mapa) {
+  if (typeof qnt === 'undefined') throw new Error('O parâmetro `qnt` é obrigatório.');
+  if (typeof qnt !== 'number') throw new Error('O tipo do parâmetro `qnt` deve ser "number".');
+
+  const pos = encontrarPlayer(mapa);
+  const novoY = pos.y;
+  const novoX = pos.x + qnt;
+
+  if (novoX >= mapa.mapa[0].length || mapa.mapa[novoY][novoX] === "#") {
+    console.warn("🚫 Movimento bloqueado por parede ou limite do mapa.");
+    return;
+  }
+
+  mapa.mapa[pos.y][pos.x] = "";
+  mapa.mapa[novoY][novoX] = "P";
+  mapa.gameScreen.innerHTML = "";
+  mapa.renderizar();
+
+  console.log(`Moveu ${qnt} bloco(s) para direita!`);
 }
 
-function moverEsquerda(qnt) {
-    if (typeof qnt === 'undefined') {
-        console.log("entrei")
-        throw new Error('O parâmetro `qtn` é obrigatório.');
-    } 
-    if (typeof qnt !== 'number') {
-        throw new Error('O tipo do parâmetro `qnt` deve ser "number".');
-      }
-      console.log(`Moveu ${qnt} blocos para esquerda!!`)
+function moverEsquerda(qnt, mapa) {
+  if (typeof qnt === 'undefined') throw new Error('O parâmetro `qnt` é obrigatório.');
+  if (typeof qnt !== 'number') throw new Error('O tipo do parâmetro `qnt` deve ser "number".');
+
+  const pos = encontrarPlayer(mapa);
+  const novoY = pos.y;
+  const novoX = pos.x - qnt;
+
+  if (novoX < 0 || mapa.mapa[novoY][novoX] === "#") {
+    console.warn("🚫 Movimento bloqueado por parede ou limite do mapa.");
+    return;
+  }
+
+  mapa.mapa[pos.y][pos.x] = "";
+  mapa.mapa[novoY][novoX] = "P";
+  mapa.gameScreen.innerHTML = "";
+  mapa.renderizar();
+
+  console.log(`Moveu ${qnt} bloco(s) para esquerda!`);
 }
 
-export {moverCima, moverBaixo, moverDireita, moverEsquerda};
-
+export { moverCima, moverBaixo, moverDireita, moverEsquerda };

@@ -19,10 +19,10 @@ const metodosDisponiveis = {
     }
     console.log(`Parâmetro: ${parametroString}, ${parametroNumber}`);
   },
-  "moverCima": moverCima, 
-  "moverBaixo": moverBaixo, 
-  "moverDireita": moverDireita, 
-  "moverEsquerda": moverEsquerda,
+  "moverCima": (qnt) => moverCima(qnt, mapa), 
+  "moverBaixo": (qnt) => moverBaixo(qnt, mapa),
+  "moverDireita": (qnt) => moverDireita(qnt, mapa), 
+  "moverEsquerda": (qnt) => moverEsquerda(qnt, mapa),
 };
 
 const gameScreen = document.querySelector("#game-screen")
