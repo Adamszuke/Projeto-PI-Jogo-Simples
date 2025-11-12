@@ -12,7 +12,13 @@
       <div id="screen">
 
       </div>
-      <input type="text" name="terminal" id="terminal" placeholder="Digite Aqui: ">
+      <div class="terminal-container">
+        <textarea name="terminal" class="terminal-historico" id="terminal-historico" disabled></textarea>
+        <div class="terminal-input-container">
+          <span class="terminal-label">></span>
+          <input type="text" class="terminal-input" id="terminal">
+        </div>
+      </div>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>

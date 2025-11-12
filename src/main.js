@@ -1,5 +1,6 @@
 import Interpretador from './interpretador.js'
 import { moverCima, moverBaixo, moverDireita, moverEsquerda } from './metodos.js';
+import atualizaHistorico from './utils/historico-terminal.js'
 
 const metodosDisponiveis = {
   'TESTE': () => { console.log('Teste') },
@@ -22,14 +23,13 @@ const metodosDisponiveis = {
   "moverDireita": moverDireita, 
   "moverEsquerda": moverEsquerda,
 };
-function minhafuncao() {
-  console.log("TESTEEE")
-}
+
 const interpretador = new Interpretador(metodosDisponiveis);
 const terminal = document.querySelector('#terminal');
 terminal.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     interpretador.executar(event.target.value);
+    atualizaHistorico(event.target.value)
     event.target.value = '';
   }
 });
