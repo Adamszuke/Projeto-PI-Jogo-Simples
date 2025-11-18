@@ -13,10 +13,8 @@ function moverCima(qnt, mapa) {
     return;
   }
 
-  mapa.mapa[pos.y][pos.x] = "";
-  mapa.mapa[novoY][novoX] = "P";
-  mapa.gameScreen.innerHTML = "";
-  mapa.renderizar();
+  // Move o jogador com animação
+  mapa.movePlayerTo(novoY, novoX);
 
   console.log(`Moveu ${qnt} bloco(s) para cima!`);
 }
@@ -34,10 +32,8 @@ function moverBaixo(qnt, mapa) {
     return;
   }
 
-  mapa.mapa[pos.y][pos.x] = "";
-  mapa.mapa[novoY][novoX] = "P";
-  mapa.gameScreen.innerHTML = "";
-  mapa.renderizar();
+  // Move o jogador com animação
+  mapa.movePlayerTo(novoY, novoX);
 
   console.log(`Moveu ${qnt} bloco(s) para baixo!`);
 }
@@ -55,10 +51,8 @@ function moverDireita(qnt, mapa) {
     return;
   }
 
-  mapa.mapa[pos.y][pos.x] = "";
-  mapa.mapa[novoY][novoX] = "P";
-  mapa.gameScreen.innerHTML = "";
-  mapa.renderizar();
+  // Move o jogador com animação
+  mapa.movePlayerTo(novoY, novoX);
 
   console.log(`Moveu ${qnt} bloco(s) para direita!`);
 }
@@ -76,10 +70,8 @@ function moverEsquerda(qnt, mapa) {
     return;
   }
 
-  mapa.mapa[pos.y][pos.x] = "";
-  mapa.mapa[novoY][novoX] = "P";
-  mapa.gameScreen.innerHTML = "";
-  mapa.renderizar();
+  // Move o jogador com animação
+  mapa.movePlayerTo(novoY, novoX);
 
   console.log(`Moveu ${qnt} bloco(s) para esquerda!`);
 }

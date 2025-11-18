@@ -25,6 +25,37 @@ body {
     flex-wrap: wrap;
     margin: auto;
     background-color: azure;
+    position: relative;
+}
+/* Tile styles used by mapa.js (fallback when global styles are not loaded) */
+.tile {
+    box-sizing: border-box;
+    width: 64px;
+    height: 64px;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: background-color 180ms ease, transform 160ms cubic-bezier(.2,.8,.2,1), opacity 160ms ease;
+    will-change: transform, background-color, opacity;
+}
+.tile.enter {
+    transform: scale(0.96);
+    opacity: 0.85;
+}
+.tile.wall {
+    background: #000;
+}
+.tile.player {
+    background: #2ecc71;
+}
+
+/* Elemento de jogador absoluto (usado para animar movimento) */
+.player {
+    pointer-events: none;
+    z-index: 5;
+    transition: transform 300ms ease;
+    will-change: transform;
+    box-sizing: border-box;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #2ecc71;
 }
 .terminal-historico {
     background-color: #31363B;
