@@ -23,20 +23,24 @@ class Game {
 
     #definirComandos() {
         return {
-            'TESTE': () => { console.log(this.mapa.mapa) },
-            'moverCima': (qnt) => moverCima.bind(this)(qnt),
-            'moverBaixo': (qnt) => moverBaixo.bind(this)(qnt),
-            'moverDireita': (qnt) => moverDireita.bind(this)(qnt),
-            'moverEsquerda': (qnt) => moverEsquerda.bind(this)(qnt),
+            'MAPA': () => {
+                console.log(this.mapa.mapa);
+                const textoPlayerPos = `{ x: ${this.player.position.x}, y: ${this.player.position.y} }`
+                const textoInimigoPos = `{ x: ${this.inimigo.position.x}, y: ${this.inimigo.position.y}`
+                return `Player Pos: ${textoPlayerPos}; Inimigo Pos: ${textoInimigoPos} }`;
+            },
+            'MOVERCIMA': (qnt) => moverCima.bind(this)(qnt),
+            'MOVERBAIXO': (qnt) => moverBaixo.bind(this)(qnt),
+            'MOVERDIREITA': (qnt) => moverDireita.bind(this)(qnt),
+            'MOVERESQUERDA': (qnt) => moverEsquerda.bind(this)(qnt),
         };
     }
 
     #initListenerTerminal(terminal) {
         terminal.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
-                this.interpretador.executar(event.target.value);
-
                 atualizaHistorico(event.target.value);
+                atualizaHistorico(this.interpretador.executar(event.target.value));
                 event.target.value = '';
             }
         });
