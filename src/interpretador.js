@@ -17,6 +17,7 @@ class Interpretador {
    * @param {string} frase A string contendo um ou mais comandos.
    */
   executar(frase) {
+    this.#regexComandos.lastIndex = 0;
     let match;
     while ((match = this.#regexComandos.exec(frase)) !== null) {
       const nomeMetodo = match[1].toLowerCase();
@@ -27,15 +28,16 @@ class Interpretador {
         const parametrosArray = this.#parseParametros(parametrosString);
 
         try {
-          funcaoMetodo(...parametrosArray);
+          return funcaoMetodo(...parametrosArray);
         } catch (e) {
-          console.error(`Erro ao executar o método '${match[1]}':`, e.message);
+          return `Erro: ` + e.message
         }
 
       } else {
-        console.warn(`Método '${match[1]}' não encontrado.`);
+        return `Método '${match[1]}' não encontrado.`;
       }
     }
+    return 'Comando não encontrado.';
   }
 
   /**
