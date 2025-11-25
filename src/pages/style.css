@@ -43,19 +43,27 @@ body {
 .tile.wall {
     background: #000;
 }
-.tile.player {
-    background: #2ecc71;
-}
 
 /* Elemento de jogador absoluto (usado para animar movimento) */
 .player {
+    align-content: center;
+    text-align: center;
+    font-size: 32px;
     pointer-events: none;
     z-index: 5;
     transition: transform 300ms ease;
     will-change: transform;
     box-sizing: border-box;
     border: 1px solid rgba(0,0,0,0.06);
-    background: #2ecc71;
+    background: #00b8cc;
+}
+.inimigo {
+    align-content: center;
+    text-align: center;
+    font-size: 32px;
+    border-radius: 50%;
+    background: red;
+    z-index: 5;
 }
 .terminal-historico {
     background-color: #31363B;
