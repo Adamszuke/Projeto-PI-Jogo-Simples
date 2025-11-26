@@ -30,7 +30,7 @@ class Inimigo {
 
     remover() {
         this.element.remove();
-        this.renderizador.removerMapa(this.position.y, this.position.x);
+        this.renderizador.removerMapa(this.position.x, this.position.y);
     }
 }
 

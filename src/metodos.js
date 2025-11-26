@@ -73,4 +73,42 @@ function moverEsquerda(qnt) {
   return `Moveu ${qnt} bloco(s) para esquerda!`;
 }
 
-export { moverCima, moverBaixo, moverDireita, moverEsquerda };
+function atacar(direcao) {
+  validar(direcao, 'direcao', [
+    'OBRIGATORIO',
+    { validacao: 'TIPO', args: ['string'] },
+  ])
+  
+  const { x, y } = this.player.position;
+  let alvoX = x;
+  let alvoY = y;
+  switch (direcao.toLowerCase()) {
+    case 'cima':
+      alvoY = y - 1;
+      break;
+    case 'baixo':
+      alvoY = y + 1;
+      break;
+    case 'esquerda':
+      alvoX = x - 1;
+      break;
+    case 'direita':
+      alvoX = x + 1;
+      break;
+    default:
+      throw new Error(`Direção inválida: "${direcao}".`);
+  }
+  if (alvoY < 0 || alvoY >= this.mapa.mapa.length || alvoX < 0 || alvoX >= this.mapa.mapa[0].length) {
+    return "Você errou o ataque!";
+  }
+
+  if (this.mapa.mapa[alvoY][alvoX] === this.inimigo.simbolo) {
+    this.inimigo.remover();
+    document.dispatchEvent(new Event('inimigoDerrotado'));
+    return "Inimigo derrotado com sucesso!";
+  } else {
+    return "Você errou o ataque!";
+  }
+}
+
+export { moverCima, moverBaixo, moverDireita, moverEsquerda, atacar };

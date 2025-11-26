@@ -4,7 +4,7 @@ import Interpretador from "./interpretador.js";
 import Player from "./player";
 import Inimigo from "./inimigo";
 import atualizaHistorico from './utils/historico-terminal.js'
-import { moverCima, moverBaixo, moverDireita, moverEsquerda } from './metodos.js';
+import { moverCima, moverBaixo, moverDireita, moverEsquerda, atacar } from './metodos.js';
 
 class Game {
 
@@ -19,6 +19,7 @@ class Game {
 
         this.mapa.renderizar([this.player.element, this.inimigo.element])
         this.#initListenerTerminal(terminalElement);
+        this.#initListenerInimigoDerrotado();
     }
 
     #definirComandos() {
@@ -33,6 +34,7 @@ class Game {
             'MOVERBAIXO': (qnt) => moverBaixo.bind(this)(qnt),
             'MOVERDIREITA': (qnt) => moverDireita.bind(this)(qnt),
             'MOVERESQUERDA': (qnt) => moverEsquerda.bind(this)(qnt),
+            'ATACAR': (direcao) => atacar.bind(this)(direcao),
         };
     }
 
@@ -44,6 +46,28 @@ class Game {
                 event.target.value = '';
             }
         });
+    }
+    #initListenerInimigoDerrotado() {
+        document.addEventListener('inimigoDerrotado', () => {
+            setTimeout(() => { this.gerarNovoInimigo() }, 2000)
+        });
+    }
+
+    gerarNovoInimigo() {
+        const locaisVazios = [];
+        for (let i = 0; i < this.mapa.mapa.length; i++) {
+            for (let j = 0; j < this.mapa.mapa[i].length; j++) {
+                if (this.mapa.mapa[i][j] === "") {
+                    locaisVazios.push({ y: i, x: j });
+                }
+            }
+        }
+
+        if (locaisVazios.length === 0) return;
+        const sorteado = locaisVazios[Math.floor(Math.random() * locaisVazios.length)];
+        this.inimigo = new Inimigo(sorteado.y, sorteado.x, this.mapa, this.renderizador);
+        this.mapa.renderizar([this.inimigo.element]);
+        console.log(`Inimigo gerado { x: ${sorteado.x} y: ${sorteado.y} }`);
     }
 }
 
